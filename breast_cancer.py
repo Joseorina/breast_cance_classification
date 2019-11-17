@@ -35,6 +35,10 @@ classification = SVC()
 #fitting data
 classification.fit(X_train, y_train)
 
+#predicting
+y_pred = classification.predict(X_test)
+
 # ecaluating the model
 from sklearn.metrics import confusion_matrix, classification_report
-
+cm = confusion_matrix(y_test, y_pred)
+sns.heatmap(cm ,annot=True)

@@ -23,3 +23,18 @@ sns.scatterplot(data = df_cancer, x = 'mean area', y ='mean smoothness', hue = '
 sns.heatmap(df_cancer.corr(), annot=True)
 
 #step 4: Model Training
+X = df_cancer.drop(['target'], axis=1)
+y = df_cancer['target']
+
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
+
+from sklearn.svm import SVC
+classification = SVC()
+
+#fitting data
+classification.fit(X_train, y_train)
+
+# ecaluating the model
+from sklearn.metrics import confusion_matrix, classification_report
+
